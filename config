@@ -1,0 +1,53 @@
+# Ghostty Configuration
+# https://ghostty.org/docs
+
+# ------------------------------------------------------------------------------
+# キーバインド設定
+# ------------------------------------------------------------------------------
+# Cmd+C が押されたら、F13 キーシーケンス (CSI 25 ~) を送信
+# Zsh側でこれを copy-region-to-clipboard にバインドしています
+keybind = super+c=text:\x1b[25~
+
+# Cmd+C: マウス選択したテキストのコピー（Claude Code対応）
+# keybind = super+c=copy_to_clipboard
+
+# Cmd+X が押されたら、F14 キーシーケンス (CSI 26 ~) を送信
+# Zsh側でこれを cut-region-to-clipboard にバインドしています
+keybind = super+x=text:\x1b[26~
+
+# Cmd+V が押されたら、F15 キーシーケンス (CSI 28 ~) を送信
+# Zsh側でこれを cut-region-to-clipboard にバインドしています
+keybind = super+v=text:\x1b[28~
+
+# # Cmd+V が押されたら、Ctrl+V (0x16) を送信
+# # Zsh側とClaude Code両方で画像・テキストのペーストに対応
+# keybind = super+v=text:\x16
+
+
+# 選択したテキストを自動でクリップボードにコピー
+copy-on-select = true
+
+# 右クリックでペースト
+# right-click-action = paste
+
+# クリップボードの読み書きを許可
+clipboard-read = allow
+clipboard-write = allow
+
+# タイピング中にマウスカーソルを隠す
+mouse-hide-while-typing = true
+
+# ------------------------------------------------------------------------------
+# 分割画面切り替え設定
+# ------------------------------------------------------------------------------
+# 分割画面の移動設定
+keybind = cmd+j=goto_split:left
+keybind = cmd+;=goto_split:right
+keybind = cmd+k=goto_split:previous
+keybind = cmd+l=goto_split:next
+
+# 次の分割画面へ移動（循環）
+keybind = cmd+]=goto_split:next
+
+# 前の分割画面へ移動（循環）
+keybind = cmd+[=goto_split:previous
