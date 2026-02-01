@@ -36,10 +36,9 @@ mouse-hide-while-typing = true
 keybind = super+s=unbind
 keybind = super+z=unbind
 
-# Cmd+/ を Ctrl+/ として送信
-# Neovim 0.11はまだ完全なKitty Keyboard Protocolをサポートしていないため
-# text:\x1f = 制御文字 0x1F (Ctrl+/)
-keybind = super+/=text:\x1f
+# Cmd+/ を F13 キーとして送信
+# F13は物理キーがないため、カスタムキーバインド用に適している
+keybind = super+/=text:\x1b[25~
 
 # ------------------------------------------------------------------------------
 # 分割画面切り替え設定
