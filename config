@@ -54,3 +54,17 @@ keybind = cmd+]=goto_split:next
 
 # 前の分割画面へ移動（循環）
 keybind = cmd+[=goto_split:previous
+
+# グローバルホットキーの設定（例：Option + Space で起動）
+# `global:` をつけるのがポイントです
+keybind = global:cmd+9=toggle_quick_terminal
+
+# クイックターミナルのカスタマイズ（お好みで）
+quick-terminal-position = bottom
+quick-terminal-screen = main
+quick-terminal-animation-duration = 0.01
+quick-terminal-size = 55%
+quick-terminal-autohide = false
+quick-terminal-space-behavior = "move"
+quick-terminal-screen = mouse
+
