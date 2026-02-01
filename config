@@ -68,3 +68,13 @@ quick-terminal-autohide = false
 quick-terminal-space-behavior = "move"
 quick-terminal-screen = mouse
 
+
+# 背景色を直接指定（テーマより優先されます）
+background = #1a1b26
+
+# 背景の透明度（0.0 〜 1.0）
+background-opacity = 0.75
+
+# 背景のぼかし具合（透明度を設定している時に有効）
+background-blur-radius = 2
+
