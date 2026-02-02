@@ -1,5 +1,7 @@
 # Ghostty Configuration
 # https://ghostty.org/docs
+# https://qiita.com/genimura/items/7fad3295c4de5538d6fe
+# https://zenn.dev/mozumasu/scraps/192ee90fde246f
 
 # ------------------------------------------------------------------------------
 # キーバインド設定
@@ -55,6 +57,10 @@ keybind = cmd+]=goto_split:next
 # 前の分割画面へ移動（循環）
 keybind = cmd+[=goto_split:previous
 
+
+# macOS: タイトルバースタイル
+macos-titlebar-style = tabs
+
 # グローバルホットキーの設定（例：Option + Space で起動）
 # `global:` をつけるのがポイントです
 keybind = global:cmd+9=toggle_quick_terminal
@@ -73,8 +79,14 @@ quick-terminal-screen = mouse
 background = #1a1b26
 
 # 背景の透明度（0.0 〜 1.0）
-background-opacity = 0.75
+background-opacity = 0.8
 
 # 背景のぼかし具合（透明度を設定している時に有効）
 background-blur-radius = 2
 
+# フォント指定（Macにインストールされているもの）
+font-family = "JetBrains Mono"
+# font-size = 12
+
+# タイトルバーを非表示にする（個人的にイチオシ）
+# macos-titlebar-style = hidden
