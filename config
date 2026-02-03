@@ -34,13 +34,18 @@ clipboard-write = allow
 # タイピング中にマウスカーソルを隠す
 mouse-hide-while-typing = true
 
-# GhosttyがCmd+Sなどを奪わないようにする
+# GhosttyがCmd+Sを奪わないようにする
 keybind = super+s=unbind
-keybind = super+z=unbind
 
-# Cmd+/ を F13 キーとして送信
-# F13は物理キーがないため、カスタムキーバインド用に適している
+# Neovim用カスタムキーバインド（F13-F15）
+# Cmd+/ を F13 キーとして送信（コメントトグル）
 keybind = super+/=text:\x1b[25~
+
+# Cmd+Z を F14 キーとして送信（Undo）
+keybind = super+z=text:\x1b[26~
+
+# Cmd+Shift+Z を F15 キーとして送信（Redo）
+keybind = super+shift+z=text:\x1b[28~
 
 # ------------------------------------------------------------------------------
 # 分割画面切り替え設定
