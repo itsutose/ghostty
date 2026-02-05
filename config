@@ -12,13 +12,7 @@ keybind = super+c=copy_to_clipboard
 # Cmd+V: クリップボードからペースト
 keybind = super+v=paste_from_clipboard
 
-# Cmd+X が押されたら、F14 キーシーケンス (CSI 26 ~) を送信
-# Zsh側でこれを cut-region-to-clipboard にバインドしています
-keybind = super+x=text:\x1b[26~
-
-# --- 以下は旧設定（Zsh用キーシーケンス送信）---
-# keybind = super+c=text:\x1b[25~
-# keybind = super+v=text:\x1b[28~
+# Cmd+X: 削除済み（未使用のため、F14がCmd+Zと競合していた）
 
 
 # 選択したテキストを自動でクリップボードにコピー
@@ -48,19 +42,48 @@ keybind = super+z=text:\x1b[26~
 keybind = super+shift+z=text:\x1b[28~
 
 # ------------------------------------------------------------------------------
-# 分割画面切り替え設定
+# tmux用カスタムキーバインド（F16-F23）
 # ------------------------------------------------------------------------------
-# 分割画面の移動設定
-keybind = cmd+j=goto_split:left
-keybind = cmd+;=goto_split:right
-keybind = cmd+k=goto_split:previous
-keybind = cmd+l=goto_split:next
+# 注意: Ghosttyは right_super をサポートしていません
+# Right_Cmd+キーは、Karabinerで Left_Cmd+別のキー に変換してから受け取ります
 
-# 次の分割画面へ移動（循環）
-keybind = cmd+]=goto_split:next
+# ウィンドウ管理
+# F16: Left_Cmd+T → 新しいウィンドウ作成
+keybind = super+t=text:\x1b[29~
+# F17: Left_Cmd+W → ウィンドウ/ペイン削除
+keybind = super+w=text:\x1b[31~
 
-# 前の分割画面へ移動（循環）
-keybind = cmd+[=goto_split:previous
+# ウィンドウ移動（Karabiner経由: Right_Cmd+J/; → Left_Cmd+,/.）
+# F18: Cmd+, (実際はRight_Cmd+J) → 前のウィンドウ
+keybind = super+comma=text:\x1b[32~
+# F19: Cmd+. (実際はRight_Cmd+;) → 次のウィンドウ
+keybind = super+period=text:\x1b[33~
+
+# ペイン移動（Karabiner経由: Right_Cmd+K/L → Left_Cmd+[/]）
+# まず、Ghosttyのデフォルトタブ移動を無効化
+keybind = super+shift+bracket_left=unbind
+keybind = super+shift+bracket_right=unbind
+# F20: Cmd+[ (実際はRight_Cmd+K) → 前のペイン
+keybind = super+bracket_left=text:\x1b[34~
+# F21: Cmd+] (実際はRight_Cmd+L) → 次のペイン
+keybind = super+bracket_right=text:\x1b[23~
+
+# ペイン分割
+# F22: Left_Cmd+D → 縦分割（左右）
+keybind = super+d=text:\x1b[24~
+# F23: Left_Cmd+Shift+D → 横分割（上下）
+keybind = super+shift+d=text:\x1b[1;2P
+
+# ------------------------------------------------------------------------------
+# 分割画面切り替え設定（tmux不使用時のみ）
+# ------------------------------------------------------------------------------
+# 注意: tmux使用時は上記のFunction Key変換が優先されます
+# keybind = cmd+j=goto_split:left
+# keybind = cmd+;=goto_split:right
+# keybind = cmd+k=goto_split:previous
+# keybind = cmd+l=goto_split:next
+# keybind = cmd+]=goto_split:next
+# keybind = cmd+[=goto_split:previous
 
 
 # macOS: タイトルバースタイル
@@ -94,4 +117,7 @@ font-family = "JetBrains Mono"
 # font-size = 12
 
 # タイトルバーを非表示にする（個人的にイチオシ）
-# macos-titlebar-style = hidden
+macos-titlebar-style = hidden
+
+# マウススクロール速度調整（デフォルト1.0、小さいほど遅くなる）
+mouse-scroll-multiplier = 0.6
