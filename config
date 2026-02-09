@@ -53,11 +53,29 @@ keybind = super+w=text:\x1b[31~
 # F17: Left_Cmd+T → 新しいウィンドウ作成
 keybind = super+t=text:\x1b[29~
 
-# ウィンドウ移動（Karabiner経由: Right_Cmd+I/O → Left_Cmd+I/O）
-# F18: Left_Cmd+I (実際はRight_Cmd+I) → 前のウィンドウ
-keybind = super+i=text:\x1b[32~
-# F19: Left_Cmd+O (実際はRight_Cmd+O) → 次のウィンドウ
-keybind = super+o=text:\x1b[33~
+# ウィンドウ移動（Karabiner経由: Right_Cmd+I/O → Left_Cmd+,/.）
+# F18: Cmd+, (実際はRight_Cmd+I) → 前のウィンドウ
+keybind = super+comma=text:\x1b[32~
+# F19: Cmd+. (実際はRight_Cmd+O) → 次のウィンドウ
+keybind = super+period=text:\x1b[33~
+
+# ------------------------------------------------------------------------------
+# Quick Terminal用フォールバック（削除して元に戻せる）
+# ------------------------------------------------------------------------------
+# Quick TerminalではKarabinerのfrontmost_application_if条件がマッチしないため、
+# 他のアプリ用のルールが適用される。これらのキーもtmux/Neovim用として処理する。
+# ※ Ghosttyのデフォルト機能を上書きする
+# 元に戻す場合: 以下の行を削除またはコメントアウト
+
+# tmux用: Right_Cmd+I/O → Cmd+Shift+[/Cmd+[ (change order)
+keybind = super+shift+bracket_left=text:\x1b[32~
+keybind = super+bracket_left=text:\x1b[33~
+
+# Neovim用: Right_Cmd+J/K/L/; → Ctrl+Shift+Tab/Ctrl+Tab/Cmd+]/Cmd+\
+keybind = ctrl+shift+tab=text:\x1b[1;3P
+keybind = ctrl+tab=text:\x1b[1;3Q
+keybind = super+bracket_right=text:\x1b[1;3R
+keybind = super+backslash=text:\x1b[1;3S
 
 # ------------------------------------------------------------------------------
 # Neovim用カスタムキーバインド（Karabiner経由でFunction Keyに変換）
