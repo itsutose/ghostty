@@ -48,25 +48,35 @@ keybind = super+shift+z=text:\x1b[28~
 # Right_Cmd+キーは、Karabinerで Left_Cmd+別のキー に変換してから受け取ります
 
 # ウィンドウ管理
-# F16: Left_Cmd+T → 新しいウィンドウ作成
-keybind = super+t=text:\x1b[29~
-# F17: Left_Cmd+W → ウィンドウ/ペイン削除
+# F16: Left_Cmd+W → ウィンドウ/ペイン削除
 keybind = super+w=text:\x1b[31~
+# F17: Left_Cmd+T → 新しいウィンドウ作成
+keybind = super+t=text:\x1b[29~
 
-# ウィンドウ移動（Karabiner経由: Right_Cmd+J/; → Left_Cmd+,/.）
-# F18: Cmd+, (実際はRight_Cmd+J) → 前のウィンドウ
-keybind = super+comma=text:\x1b[32~
-# F19: Cmd+. (実際はRight_Cmd+;) → 次のウィンドウ
-keybind = super+period=text:\x1b[33~
+# ウィンドウ移動（Karabiner経由: Right_Cmd+I/O → Left_Cmd+I/O）
+# F18: Left_Cmd+I (実際はRight_Cmd+I) → 前のウィンドウ
+keybind = super+i=text:\x1b[32~
+# F19: Left_Cmd+O (実際はRight_Cmd+O) → 次のウィンドウ
+keybind = super+o=text:\x1b[33~
 
-# ペイン移動（Karabiner経由: Right_Cmd+K/L → Left_Cmd+[/]）
-# まず、Ghosttyのデフォルトタブ移動を無効化
-keybind = super+shift+bracket_left=unbind
-keybind = super+shift+bracket_right=unbind
-# F20: Cmd+[ (実際はRight_Cmd+K) → 前のペイン
-keybind = super+bracket_left=text:\x1b[34~
-# F21: Cmd+] (実際はRight_Cmd+L) → 次のペイン
-keybind = super+bracket_right=text:\x1b[23~
+# ------------------------------------------------------------------------------
+# Neovim用カスタムキーバインド（Karabiner経由でFunction Keyに変換）
+# ------------------------------------------------------------------------------
+# Ghosttyのデフォルトキーバインドを無効化して、Karabinerで変換されたキーを通過させる
+
+# Karabinerで Right_Cmd+J → F24, Right_Cmd+; → F25 に変換される
+# GhosttyはこれらのFunction Keyをそのまま通過させる（何もバインドしない）
+
+# Karabinerで Right_Cmd → Left_Cmd に変換
+# Ghosttyで Left_Cmd → Alt+Fキーのエスケープシーケンスに変換
+# Alt+F1 (^[[1;3P): Neovim 前のバッファ
+keybind = super+j=text:\x1b[1;3P
+# Alt+F2 (^[[1;3Q): Neovim 次のバッファ
+keybind = super+semicolon=text:\x1b[1;3Q
+# Alt+F3 (^[[1;3R): Neovim カーソル位置を戻る (Ctrl+O)
+keybind = super+k=text:\x1b[1;3R
+# Alt+F4 (^[[1;3S): Neovim カーソル位置を進む (Ctrl+I)
+keybind = super+l=text:\x1b[1;3S
 
 # ペイン分割
 # F22: Left_Cmd+D → 縦分割（左右）
