@@ -41,6 +41,10 @@ keybind = super+z=text:\x1b[26~
 # Cmd+Shift+Z を F15 キーとして送信（Redo）
 keybind = super+shift+z=text:\x1b[28~
 
+# Shift+Enter → Option+Enter として送信
+# Claude Codeでの改行、Neovimでの空行追加に使用
+keybind = shift+enter=text:\x1b\x0d
+
 # ------------------------------------------------------------------------------
 # tmux用カスタムキーバインド（F16-F23）
 # ------------------------------------------------------------------------------
