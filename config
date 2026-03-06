@@ -123,7 +123,7 @@ macos-titlebar-style = tabs
 
 # グローバルホットキーの設定（例：Option + Space で起動）
 # `global:` をつけるのがポイントです
-keybind = global:cmd+9=toggle_quick_terminal
+keybind = global:super+9=toggle_quick_terminal
 
 # クイックターミナルのカスタマイズ（お好みで）
 quick-terminal-position = bottom
