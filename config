@@ -129,7 +129,7 @@ keybind = global:super+9=toggle_quick_terminal
 quick-terminal-position = bottom
 quick-terminal-screen = main
 quick-terminal-animation-duration = 0.01
-quick-terminal-size = 55%
+quick-terminal-size = 90%
 quick-terminal-autohide = false
 quick-terminal-space-behavior = "move"
 quick-terminal-screen = mouse
