@@ -57,27 +57,29 @@ keybind = super+w=text:\x1b[31~
 # F17: Left_Cmd+T → 新しいウィンドウ作成
 keybind = super+t=text:\x1b[29~
 
-# ウィンドウ移動（Karabiner経由: Right_Cmd+I/O → Left_Cmd+,/.）
-# F18: Cmd+, (実際はRight_Cmd+I) → 前のウィンドウ
+# tmuxウィンドウ移動（Karabiner経由: Right_Cmd+J/; → Ctrl+Shift+Tab/Ctrl+Tab）
+# 以下はLeft_Cmd+,/.経由のフォールバック（通常は使わない）
+# F18: tmux前のウィンドウ
 keybind = super+comma=text:\x1b[32~
-# F19: Cmd+. (実際はRight_Cmd+O) → 次のウィンドウ
+# F19: tmux次のウィンドウ
 keybind = super+period=text:\x1b[33~
 
 # ------------------------------------------------------------------------------
-# Quick Terminal用フォールバック（削除して元に戻せる）
+# Quick Terminal用フォールバック
 # ------------------------------------------------------------------------------
 # Quick TerminalではKarabinerのfrontmost_application_if条件がマッチしないため、
 # 他のアプリ用のルールが適用される。これらのキーもtmux/Neovim用として処理する。
-# ※ Ghosttyのデフォルト機能を上書きする
-# 元に戻す場合: 以下の行を削除またはコメントアウト
 
-# tmux用: Right_Cmd+I/O → Cmd+Shift+[/Cmd+[ (change order)
-keybind = super+shift+bracket_left=text:\x1b[32~
-keybind = super+bracket_left=text:\x1b[33~
+# tmux用: Right_Cmd+J/; → Ctrl+Shift+Tab/Ctrl+Tab → tmuxウィンドウ切替
+keybind = ctrl+shift+tab=text:\x1b[32~
+keybind = ctrl+tab=text:\x1b[33~
 
-# Neovim用: Right_Cmd+J/K/L/; → Ctrl+Shift+Tab/Ctrl+Tab/Cmd+]/Cmd+\
-keybind = ctrl+shift+tab=text:\x1b[1;3P
-keybind = ctrl+tab=text:\x1b[1;3Q
+# tmux用: Right_Cmd+J/; → Cmd+Option+Left/Right（Cursor/Zedが直前のアプリだった場合）
+# Karabiner Rule 4がRule 6より先にマッチし、Cursor用の変換が適用されるため
+keybind = super+alt+left=text:\x1b[32~
+keybind = super+alt+right=text:\x1b[33~
+
+# Neovim用: Right_Cmd+K/L → Cmd+]/Cmd+\ → カーソル位置戻る/進む
 keybind = super+bracket_right=text:\x1b[1;3R
 keybind = super+backslash=text:\x1b[1;3S
 
@@ -89,15 +91,15 @@ keybind = super+backslash=text:\x1b[1;3S
 # Karabinerで Right_Cmd+J → F24, Right_Cmd+; → F25 に変換される
 # GhosttyはこれらのFunction Keyをそのまま通過させる（何もバインドしない）
 
-# Karabinerで Right_Cmd → Left_Cmd に変換
-# Ghosttyで Left_Cmd → Alt+Fキーのエスケープシーケンスに変換
-# Alt+F1 (^[[1;3P): Neovim 前のバッファ
-keybind = super+j=text:\x1b[1;3P
-# Alt+F2 (^[[1;3Q): Neovim 次のバッファ
-keybind = super+semicolon=text:\x1b[1;3Q
-# Alt+F3 (^[[1;3R): Neovim カーソル位置を戻る (Ctrl+O)
+# Karabinerで Right_Cmd+J/; → Ctrl+Shift+Tab/Ctrl+Tab に変換（Rule 6経由）
+# 以下はLeft_Cmd+J/;経由のフォールバック
+# F18: tmux 前のウィンドウ (Right_Cmd+J)
+keybind = super+j=text:\x1b[32~
+# F19: tmux 次のウィンドウ (Right_Cmd+;)
+keybind = super+semicolon=text:\x1b[33~
+# Alt+F3 (^[[1;3R): Neovim カーソル位置を戻る (Right_Cmd+K)
 keybind = super+k=text:\x1b[1;3R
-# Alt+F4 (^[[1;3S): Neovim カーソル位置を進む (Ctrl+I)
+# Alt+F4 (^[[1;3S): Neovim カーソル位置を進む (Right_Cmd+L)
 keybind = super+l=text:\x1b[1;3S
 
 # ペイン分割
