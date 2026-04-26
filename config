@@ -79,9 +79,10 @@ keybind = ctrl+tab=text:\x1b[33~
 keybind = super+alt+left=text:\x1b[32~
 keybind = super+alt+right=text:\x1b[33~
 
-# Neovim用: Right_Cmd+K/L → Cmd+]/Cmd+\ → カーソル位置戻る/進む
-keybind = super+bracket_right=text:\x1b[1;3R
-keybind = super+backslash=text:\x1b[1;3S
+# Neovim用: Right_Cmd+K/L → Karabiner → Cmd+[/Cmd+] → カーソル位置戻る/進む
+# JISキーボードでは [ = super+[ (Ghostty), ] = super+] (Ghostty)
+keybind = super+[=text:\x1b[1;3R
+keybind = super+]=text:\x1b[1;3S
 
 # ------------------------------------------------------------------------------
 # Neovim用カスタムキーバインド（Karabiner経由でFunction Keyに変換）
