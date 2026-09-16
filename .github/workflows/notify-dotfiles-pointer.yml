@@ -1,0 +1,35 @@
+name: notify dotfiles (pointer bump)
+
+# ghostty main への push を親 dotfiles に repository_dispatch で知らせ、
+# dotfiles 側の submodule-pointer-bump.yml を即時に起こす（イベント駆動）。
+# dotfiles 側の schedule は保険だが実測 2〜7 時間おきにしか走らないため、即時追従にはこの notify が要る。
+# 送信には dotfiles Contents:write を持つ PAT が要る（secret DOTFILES_DISPATCH_TOKEN。claude repo と同じ値）。
+# PAT 未設定なら dispatch を送らない（dotfiles 側の schedule が保険で拾う）。
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: notify-dotfiles-pointer
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fire repository_dispatch to dotfiles
+        env:
+          GH_TOKEN: ${{ secrets.DOTFILES_DISPATCH_TOKEN }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::DOTFILES_DISPATCH_TOKEN 未設定。dispatch を送らない（dotfiles の schedule が保険で拾う）。"
+            exit 0
+          fi
+          gh api -X POST "repos/${{ github.repository_owner }}/dotfiles/dispatches" \
+            -f event_type=submodule-updated \
+            -f "client_payload[repo]=${{ github.repository }}" \
+            -f "client_payload[sha]=${{ github.sha }}"
