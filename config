@@ -100,8 +100,11 @@ keybind = super+j=text:\x1b[32~
 keybind = super+semicolon=text:\x1b[33~
 # Alt+F3 (^[[1;3R): Neovim カーソル位置を戻る (Right_Cmd+K)
 keybind = super+k=text:\x1b[1;3R
-# Alt+F4 (^[[1;3S): Neovim カーソル位置を進む (Right_Cmd+L)
-keybind = super+l=text:\x1b[1;3S
+# F20: Left_Cmd+L → browser URL / 他ペインでは nvim forward（Cmd+] と同じ動作を維持）
+# Cmd+] とシーケンスを分ける。分けないと browser で URL と進むを区別できない
+keybind = super+l=text:\x1b[34~
+# F21: Left_Cmd+R → browser reload（他ペインでは未使用）
+keybind = super+r=text:\x1b[35~
 
 # ペイン分割
 # F22: Left_Cmd+D → 縦分割（左右）
